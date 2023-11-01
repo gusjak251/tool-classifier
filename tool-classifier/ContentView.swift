@@ -12,7 +12,7 @@ import Vision
 struct ContentView: View {
     @State private var image: Image?
     @State private var classificationResult: String = "Select an image"
-    private let model = ToolClassifier_1(model: <#T##MLModel#>);
+    private let model = ToolClassifier_1(model: MLModel());
     
     var body: some View {
         VStack {
