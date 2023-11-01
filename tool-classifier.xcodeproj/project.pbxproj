@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47175BB62AF2889A0009CDB9 /* ToolClassifier 1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 47175BB52AF2889A0009CDB9 /* ToolClassifier 1.mlmodel */; };
 		9B8E9F9F2AF2751300BC1B9A /* tool_classifierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E9F9E2AF2751300BC1B9A /* tool_classifierApp.swift */; };
 		9B8E9FA12AF2751300BC1B9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8E9FA02AF2751300BC1B9A /* ContentView.swift */; };
 		9B8E9FA32AF2751400BC1B9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B8E9FA22AF2751400BC1B9A /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47175BB52AF2889A0009CDB9 /* ToolClassifier 1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = "ToolClassifier 1.mlmodel"; sourceTree = "<group>"; };
 		9B8E9F9B2AF2751300BC1B9A /* tool-classifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tool-classifier.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B8E9F9E2AF2751300BC1B9A /* tool_classifierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tool_classifierApp.swift; sourceTree = "<group>"; };
 		9B8E9FA02AF2751300BC1B9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 		9B8E9F9D2AF2751300BC1B9A /* tool-classifier */ = {
 			isa = PBXGroup;
 			children = (
+				47175BB52AF2889A0009CDB9 /* ToolClassifier 1.mlmodel */,
 				9B8E9F9E2AF2751300BC1B9A /* tool_classifierApp.swift */,
 				9B8E9FA02AF2751300BC1B9A /* ContentView.swift */,
 				9B8E9FA22AF2751400BC1B9A /* Assets.xcassets */,
@@ -259,6 +262,7 @@
 			files = (
 				9B8E9FA12AF2751300BC1B9A /* ContentView.swift in Sources */,
 				9B8E9F9F2AF2751300BC1B9A /* tool_classifierApp.swift in Sources */,
+				47175BB62AF2889A0009CDB9 /* ToolClassifier 1.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
