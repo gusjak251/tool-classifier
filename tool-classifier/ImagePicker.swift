@@ -15,6 +15,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     @Binding var selectedImage: UIImage?
     @Binding var isPickerShowing:Bool
+    @Binding var showText: String
     
     func makeUIViewController(context: Context) -> some UIViewController {
         
@@ -47,7 +48,10 @@ class Coordinator: NSObject,UIImagePickerControllerDelegate,UINavigationControll
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             DispatchQueue.main.async {
                 self.parent.selectedImage = image
-                classifyImage(image)
+                let model = createImageClassifier()
+                let classname = classifyImage(model:model,image:image)
+                self.parent.showText = classname
+                
             }
         }
         parent.isPickerShowing = false
@@ -61,13 +65,16 @@ class Coordinator: NSObject,UIImagePickerControllerDelegate,UINavigationControll
     
 }
 
-func classifyImage(UIImage: Image) -> VNCoreMLModel {
+
+
+// Model implementation
+
+func createImageClassifier() -> VNCoreMLModel {
     let defaultConfig = MLModelConfiguration()
 
 
     // Create an instance of the image classifier's wrapper class.
     let imageClassifierWrapper = try? ToolClassifier_1(configuration: defaultConfig)
-
 
     guard let imageClassifier = imageClassifierWrapper else {
         fatalError("App failed to create an image classifier model instance.")
@@ -82,7 +89,43 @@ func classifyImage(UIImage: Image) -> VNCoreMLModel {
     guard let imageClassifierVisionModel = try? VNCoreMLModel(for: imageClassifierModel) else {
         fatalError("App failed to create a `VNCoreMLModel` instance.")
     }
-
+    
 
     return imageClassifierVisionModel;
+}
+
+func classifyImage(model: VNCoreMLModel, image: UIImage) -> String {
+    guard let ciImage = CIImage(image: image) else {
+        fatalError("Failed to load CI image");
+    }
+    
+    var result_text = ""
+    
+    //classification request
+    let imageClassificationRequest = VNCoreMLRequest(model: model) { (request, error) in
+        guard let results = request.results as? [VNRecognizedObjectObservation],
+        let topresult=results.first else { fatalError("Cannot retrieve results")
+        }
+        
+        //let topresult=results.first
+        //access the classification results
+        print(results)
+        
+        result_text = topresult.description
+        
+        //print("Class: \(String(describing: classname)),Confidence: \(String(describing: confidence))")
+        
+    }
+    
+    
+    //perform the request
+    let handler = VNImageRequestHandler(ciImage: ciImage)
+    do{try handler.perform([imageClassificationRequest])
+        
+    }catch{
+        print("Error:Blah,Blah")
+    }
+    return result_text
+      //handler.perform([imageClassificationRequest])
+    
 }

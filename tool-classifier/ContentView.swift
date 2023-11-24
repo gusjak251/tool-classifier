@@ -16,6 +16,7 @@ struct ContentView: View {
     
     @State var selectedImage:UIImage?
     @State var isPickerShowing = false
+    @State var showText:String = "No classification made"
     
     ///@State private var classificationResult: String = "Select an image"
     
@@ -25,9 +26,7 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-           ///Text(classificationResult)
-            
-            
+            Text(showText)
             if selectedImage != nil {
                 Image(uiImage: selectedImage!)
                     .resizable()
@@ -53,7 +52,7 @@ struct ContentView: View {
             
             }
             .sheet(isPresented:$isPickerShowing,onDismiss: nil){
-                ImagePicker(selectedImage: $selectedImage,isPickerShowing: $isPickerShowing)
+                ImagePicker(selectedImage: $selectedImage,isPickerShowing: $isPickerShowing, showText: $showText)
             }
             
         }
